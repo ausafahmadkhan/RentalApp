@@ -8,9 +8,13 @@ mongoose.connect("mongodb://localhost:27017/playground",
                 {
                     useNewUrlParser : true,
                     useUnifiedTopology : true
+                },(err) => {
+                    if (!err)
+                        console.log(`Connected to mongodb successfully`);
+                    else
+                        console.log(`Could not establish connection due to ${err}`)
                 })
-        .then(() => console.log(`Connected to mongodb`))
-        .catch((err) => console.log(`Could not connect to mongodb due to ${err}`));
+        
 
 app.use("/customer", customerRouter);
 
