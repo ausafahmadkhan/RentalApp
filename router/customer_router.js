@@ -3,6 +3,7 @@ const router = express.Router();
 router.use(express.json())
 const { Customer, validate } = require('../models/customer');
 
+router.use(express.json());
 
 router.get("/getCustomers", async (req, res) => {
     const customers = await Customer.find()
@@ -56,6 +57,7 @@ router.put("/updateCustomer/:id", async (req, res) => {
         {
             new : true
         }
+    );
     )
     .select("-__v");
 
