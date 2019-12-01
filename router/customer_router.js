@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-router.use(express.json())
 const { Customer, validate } = require('../models/customer');
 
 router.use(express.json());
@@ -56,10 +55,8 @@ router.put("/updateCustomer/:id", async (req, res) => {
         },
         {
             new : true
-        }
-    );
-    )
-    .select("-__v");
+        })
+        .select("-__v");
 
     if (!customer)
         return res.status(404).send("No customer present with the given id");
