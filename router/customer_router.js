@@ -55,10 +55,9 @@ router.put("/updateCustomer/:id", async (req, res) => {
         },
         {
             new : true
-        }
-    )
-    .select("-__v");
-    
+        })
+        .select("-__v");
+
     if (!customer)
         return res.status(404).send("No customer present with the given id");
 
