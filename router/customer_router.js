@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
+router.use(express.json())
 const { Customer, validate } = require('../models/customer');
 
-router.use(express.json())
+router.use(express.json());
 
 router.get("/getCustomers", async (req, res) => {
     const customers = await Customer.find()
@@ -24,7 +25,7 @@ router.post("/addCustomer", async (req, res) => {
         }
     )
 
-    customer = await customer.save();
+    customer = await customer.save().select("-__v");
     
     res.status(200).send(customer);
 })
@@ -57,6 +58,8 @@ router.put("/updateCustomer/:id", async (req, res) => {
             new : true
         }
     );
+    )
+    .select("-__v");
 
     if (!customer)
         return res.status(404).send("No customer present with the given id");
