@@ -3,8 +3,7 @@ const express = require('express');
 const customerRouter = require('./router/customer_router');
 const genreRouter = require('./router/genre_router');
 const movieRouter = require('./router/movie_router');
-const rentalRouter = require('./router/rental_router')
-
+const rentalRouter = require('./router/rental_router');
 const app = express();
 
 mongoose.connect("mongodb://localhost:27017/playground",
