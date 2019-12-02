@@ -22,6 +22,7 @@ const customerSchema = new mongoose.Schema(
             minlength : 5,
             maxlength : 15
         }
+        //and several other fields
     }
 );
 
