@@ -20,13 +20,21 @@ router.post("/addCustomer", async (req, res) => {
         {
             name : req.body.name,
             isGold : req.body.isGold,
-            phoneNumber : req.body.phoneNumber
+            phoneNumber : req.body.phoneNumber,
+            address : req.body.address
         }
     )
 
-    customer = await customer.save().select("-__v");
+    try
+    {
+        customer = await customer.save();
+    }
+    catch(error)
+    {
+        return res.status(400).send(error.message);
+    }
     
-    res.status(200).send(customer);
+    return res.status(200).send(customer);
 })
 
 router.get("/getCustomer/:id", async (req, res) => {
@@ -73,5 +81,10 @@ router.delete("/deleteCustomer/:id", async (req, res) => {
 
     return res.status(200).send(customer);
 })
+
+// router.delete("/deleteAll", async (req, res) => {
+//     const customers = await Customer.deleteMany();
+//     return res.status(200).send(customers);
+// })
 
 module.exports = router;
