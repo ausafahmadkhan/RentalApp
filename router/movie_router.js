@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { Movie, validate } = require('../models/movie');
 const { Genre } = require('../models/genre');
+const auth = require('../middleware/auth');
 
 router.use(express.json());
 
-router.get("/getMovies", async (req, res) => {
+router.get("/getMovies", [auth], async (req, res) => {
     const movies = await Movie.find()
     .select("-__v")
     .sort("datePublished");

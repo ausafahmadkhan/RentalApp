@@ -5,6 +5,7 @@ const genreRouter = require('./router/genre_router');
 const movieRouter = require('./router/movie_router');
 const rentalRouter = require('./router/rental_router');
 const userRouter = require('./router/user_router');
+const loginRouter = require('./router/login_router');
 const config = require('config');
 const app = express();
 
@@ -27,6 +28,7 @@ app.use("/genre", genreRouter);
 app.use("/movie", movieRouter);
 app.use("/rental", rentalRouter);
 app.use("/user", userRouter);
+app.use("/login", loginRouter);
 
 const PORT = process.env.PORT || 3000;
 
